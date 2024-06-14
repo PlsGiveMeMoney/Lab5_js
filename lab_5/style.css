@@ -1,0 +1,30 @@
+table {
+  border-collapse: collapse;
+
+  border: 1px solid #ddd;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: gray;
+  font-weight: bold;
+}
+
+td {
+  border: 1px solid gray;
+  background-color: #ddd;
+}
+
+svg text {
+ font: 8px Verdana;
+}
+svg path, line {
+ fill: none;
+ stroke: #333333;
+ width: 1px;
+}

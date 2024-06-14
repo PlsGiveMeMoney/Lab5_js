@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <script src="http://d3js.org/d3.v7.min.js"> </script>
+    <meta charset="utf-8">
+    <title>Информация о гречке</title>
+  </head>
+  <body>
+    <p><a href="Main-page.html"> Главная страница </a><br><a href="table-page.html"> Таблица с информацией о продуктах </a></p>
+    <hr>
+    <p></p>
+    <details>
+      <summary> График </summary>
+	   <form id="formg">
+ <p>Значение по оси OX</p>
+	<input type="radio" name="ox" value="Молочные продукты" checked>Молочные продукты<br>
+	<input type="radio" name="ox" value="Хлебобулочные изделия">Хлебобулочные изделия<br>
+	<input type="radio" name="ox" value="Крупы">Крупы<br>
+	<input type="radio" name="ox" value="Овощи">Овощи<br>
+	<input type="radio" name="ox" value="Фрукты">Фрукты<br>
+	<input type="radio" name="ox" value="Мясо">Мясо<br>
+	 <p>Значение по оси OY</p>
+	 
+	 <input type="checkbox" name="oy" value="Белки" checked>Белки<br> 
+	 <input type="checkbox" name="oy" value="Жиры">Жиры<br> 
+	 <input type="checkbox" name="oy" value="Углеводы">Углеводы<br>
+	 <input type="checkbox" name="oy" value="Каллорийность">Каллорийность<br>
+	 <p>Тип диаграммы</p>
+	 <input type="radio" name="chartType" value="scatter" checked>Точечная диаграмма<br>
+	 <input type="radio" name="chartType" value="bar">Столбчатая диаграмма<br>
+	 <p> 
+	 <input type="button" value="Построить" id="buildButton" onclick="drawGraph(this.form)">
+	 </p>
+	</form>
+ <svg width="800" height="500"> </svg>
+      <!-- <form>
+        <table>
+          <tbody>
+            <tr>
+              <td>График по оси OX</td>
+              <td>Результат</td>
+            </tr>
+            <tr></tr>
+            <tr>
+              <td>
+                <label>Тип:
+                  <br>
+				   <input type="checkbox" name="milk" checked>Молочные продукты<br>
+					<input type="checkbox" name="bread">Хлебобулочные изделия<br>
+					<input type="checkbox" name="oat">Крупы<br>
+					<input type="checkbox" name="veggies">Овощи<br>
+					<input type="checkbox" name="fruits">Фрукты<br>
+					<input type="checkbox" name="meat">Мясо<br>
+                </label>
+              </td>
+              <td>
+				 <input type="radio" name="kkal" value="Ккал" checked>Ккал
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+				<input type="radio" name="protine" value="Белки">Белки<br>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+				<input type="radio" name="fats" value="Жиры">Жиры<br>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+				<input type="radio" name="carbs" value="Углеводы">Углеводы<br>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+		<p>Тип диаграммы</p>
+ <input type="radio" name="chartType" value="scatter" checked>Точечная диаграмма<br>
+ <input type="radio" name="chartType" value="bar">Столбчатая диаграмма<br>
+ <p> 
+        <input type="button" value="Построить" onclick="drawGraph(this.form)">
+      </form> -->
+    </details>
+    <details>
+      <summary> Фильтр </summary>
+      <form id="filter">
+        <p>
+          <label>Название:
+            <input type="text" id="structure">
+          </label><br>
+          <label>Тип:
+            <input type="text" id="category">
+          </label><br>
+          <label>Ккал:
+            <input type="number" id="kkalFrom"> до:
+            <input type="number" id="kkalTo">
+          </label><br>
+          <label>Белки:
+            <input type="number" id="proteinFrom"> до:
+            <input type="number" id="proteinTo">
+          </label><br>
+          <label>Жиры:
+            <input type="number" id="fatFrom"> до:
+            <input type="number" id="fatTo">
+          </label><br>
+          <label>Углеводы:
+            <input type="number" id="carbsFrom"> до:
+            <input type="number" id="carbsTo">
+          </label><br>
+           <input type="button" id="search-button" value="Найти">
+		<input type="button"  id="clear-button" value="Очистить фильтры">
+        </p>
+      </form>
+    </details>
+    <details>
+      <summary> Сортировка </summary>
+      <form id="sort">
+        <p>
+          <label>Сортировка первого уровня
+             <p>
+			<select id="fieldsFirst">
+			</select>
+			по убыванию? <input type="checkbox" id="fieldsFirstDesc">
+			</p>
+          </label><br>
+          <label>Сортировка второго уровня
+             <p>
+			<select id="fieldsSecond">
+			</select>
+			по убыванию? <input type="checkbox" id="fieldsSecondDesc">
+			</p>
+          </label><br>
+          <label>Сортировка третьего уровня
+             <p>
+			<select id="fieldsThird">
+			</select>
+			по убыванию? <input type="checkbox" id="fieldsThirdDesc">
+			</p>
+          </label><br><br>
+           <input type="button" id="sort-button" value="Сортировать">
+			<input type="button" id="sort-button-clear" value="Сбросить сортировку">
+        </p>
+      </form>
+    </details>
+    <p></p>
+    <p>Информация в таблице расчитана на 100г. продукта</p>
+    <p></p>
+ <div class="table">
+ <p> 
+ <input type="button" id="showTable" value="Показать таблицу" >
+ </p>
+ <table> </table>
+ 
+    <table align="center" border="1" cellspacing="0" id="list">
+
+    </table>
+    <p></p>
+	</div>
+  </body>
+  <script src="js/main.js"></script>
+   <script src="js/data.js"></script>
+</html>
